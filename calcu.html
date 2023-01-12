@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* Add some style to the calculator */
+    .calculator {
+      width: 300px;
+      margin: 0 auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 20px;
+      text-align: center;
+    }
+    /* Style the buttons */
+    .button {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: white;
+      font-size: 20px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    .button:hover {
+      background-color: #eee;
+    }
+    /* Style the display */
+    .display {
+      width: 100%;
+      height: 50px;
+      font-size: 36px;
+      text-align: right;
+      padding-right: 10px;
+      box-sizing: border-box;
+      border: none;
+      background-color: white;
+    }
+  </style>
+</head>
+<body>
+  <!-- Create the calculator -->
+  <div class="calculator">
+    <!-- Create the display -->
+    <input class="display" type="text" value="0" disabled>
+    <!-- Create the buttons -->
+    <button class="button" onclick="clear()">C</button>
+    <button class="button" onclick="addNumber(7)">7</button>
+    <button class="button" onclick="addNumber(8)">8</button>
+    <button class="button" onclick="addNumber(9)">9</button>
+    <button class="button" onclick="operation('/')">/</button>
+    <button class="button" onclick="addNumber(4)">4</button>
+    <button class="button" onclick="addNumber(5)">5</button>
+    <button class="button" onclick="addNumber(6)">6</button>
+    <button class="button" onclick="operation('*')">*</button>
+    <button class="button" onclick="addNumber(1)">1</button>
+    <button class="button" onclick="addNumber(2)">2</button>
+    <button class="button" onclick="addNumber(3)">3</button>
+    <button class="button" onclick="operation('-')">-</button>
+    <button class="button" onclick="addNumber(0)">0</button>
+    <button class="button" onclick="addDecimal()">.</button>
+    <button class="button" onclick="compute()">=</button>
+    <button class="button" onclick="operation('+')">+</button>
+  </div>
+  <!-- Add some JavaScript to make the calculator functional -->
+  <script>
+    // Store the current number being entered
+    let currentNumber = '0';
+    // Store the previous number
+    let previousNumber = '';
+    // Store
+// Store the current operation
+let currentOperation = '';
+
+// Function to add a number to the current number
+function addNumber(number) {
+  if (currentNumber === '0') {
+    currentNumber = number;
+  } else {
+    currentNumber += number;
+  }
+  updateDisplay();
+}
+
+// Function to add a decimal point to the current number
+function addDecimal() {
+  if (!currentNumber.includes('.')) {
+    currentNumber += '.';
+  }
+  updateDisplay();
+}
+
+// Function to update the display
+function updateDisplay() {
+  document.querySelector('.display').value = currentNumber;
+}
+
+// Function to clear the current number and reset everything to default
+function clear() {
+  currentNumber = '0';
+  previousNumber = '';
+  currentOperation = '';
+  updateDisplay();
+}
+
+// Function to set the current operation
+function operation(op) {
+  if (currentOperation !== '') {
+    compute();
+  }
+  previousNumber = currentNumber;
+  currentNumber = '0';
+  currentOperation = op;
+  updateDisplay();
+}
+
+// Function to compute the result of the previous operation
+function compute() {
+  let result = '';
+  switch(currentOperation) {
+    case '+':
+      result = parseFloat(previousNumber) + parseFloat(currentNumber);
+      break;
+    case '-':
+      result = parseFloat(previousNumber) - parseFloat(currentNumber);
+      break;
+    case '*':
+      result = parseFloat(previousNumber) * parseFloat(currentNumber);
+      break;
+    case '/':
+      result = parseFloat(previousNumber) / parseFloat(currentNumber);
+      break;
+  }
+  currentNumber = result;
+  currentOperation = '';
+  updateDisplay();
+}
+  </script>
+</body>
+</html>

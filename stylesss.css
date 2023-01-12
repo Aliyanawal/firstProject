@@ -1,0 +1,32 @@
+h1{
+    color: blueviolet;
+}
+#sana{
+    border-color: rgb(128, 128, 128);
+ }
+ .aisha{
+    color: rgb(42, 165, 83);
+    border: 2px solid grey;
+
+ }
+ div.hover-example{
+    margin: 20;
+    width: 100px;
+    height: 100px;
+    background-color: limegreen;
+    color: white;
+ }
+div.hover-example:hover{
+    background-color: crimson;
+    width: 150px;
+    height: 150px;
+ }
+.chapter{
+    margin: 100;
+}
+.chapter::after{
+    content: "❦";
+    font-size: 50px;text-align: center;
+    display: block;
+
+}
